@@ -1,15 +1,18 @@
 require('./models/User');
+require('./models/Track');
 const express = require('express');
 const mongoose = require('mongoose');
 const MONGO_URI = require('./dbConfig.js');
 const bodyParser = require('body-parser');
-const auth = require('./routes/authRoutes.js');
+const authRoutes = require('./routes/authRoutes.js');
+const trackRoutes = require('./routes/trackRoutes.js');
 const requireAuth = require('./middlewares/requireAuth.js');
 
 const app = express();
 
 app.use(bodyParser.json());
-app.use(auth);
+app.use(authRoutes);
+app.use(trackRoutes);
 
 mongoose.connect(MONGO_URI);
 
